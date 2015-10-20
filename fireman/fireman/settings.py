@@ -62,7 +62,7 @@ MEDIA_URL = ''
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 import os
-STATIC_ROOT = os.path.normpath(os.path.abspath(__file)+'/../../static/')
+STATIC_ROOT = os.path.normpath(os.path.abspath(__file__)+'/../../static/')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -113,6 +113,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.normpath(os.path.abspath(__file__)+'/../../templates'),  
 )
 
 INSTALLED_APPS = (
@@ -122,6 +123,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
+    'auth',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

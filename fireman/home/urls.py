@@ -5,5 +5,5 @@ urlpatterns = patterns('',
     # url(r'^$', 'fireman.views.home', name='home'),
     # url(r'^fireman/', include('fireman.foo.urls')),
     url(r'^$', homepage),
-    url(r'^auth/',include('auth.urls'))
+    #url(r'^auth/',include('auth.urls'))
 )
