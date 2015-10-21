@@ -3,6 +3,8 @@ from django.template import Context
 from django.https import HttpResponse
 from models import Imgsrc
 from home import homepage
+from auth.models import User
+from auth.models import UserImg
 # Create your views here.
 def get_img(request):
     if getattr(request,'GET'):
@@ -25,3 +27,7 @@ def load_img(img_list):
         error = 'no such image!'
     t = loader.get_template('list_img.html')
     return HttpResponse(t.render(Context({'img_list':img_list,'error':error}))
+
+def get_self_img(request):
+# how to get user name ? maybe cookie can do this?
+    pass
