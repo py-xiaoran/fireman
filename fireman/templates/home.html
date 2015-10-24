@@ -2,11 +2,18 @@
 {%block context%}
 <div>
 hello everyone!
-<a href="auth/login" name="login">login</a>
-<a name="auth/add_user" href="auth/add_user" >setlogin</a>
-<form method="GET">
+<a name="login" href="auth/login" >
+{%if user_name%}
+Hi! {{user_name}}
+{%else%}
+login
+{%endif%}
+</a>
+<a name="add_user" href="auth/add_user/" >setlogin</a>
+<a name="get_self_img" href="getImg/get_self_img/" >my image</a>
+<form method="GET" action="getimg/search/" >
 <input type="text" name="search">
 <input type="button" name="search_bnt" value="search">
 </form>
 </div>
-{%endblock%}aaa
+{%endblock%}

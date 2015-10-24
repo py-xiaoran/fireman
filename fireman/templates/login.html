@@ -1,11 +1,12 @@
 {% extends "base.html"%}
 {%block context%}
+<p>{{error}}</p>
 <form method="GET">
 <span>UserName:</span>
-<input type="text" >
+<input type="text" name="user_name">
 <br>
 <span>Password:</span>
-<input type="password" >
+<input type="password" name="user_password" >
 <br>
 <input type="submit" value="submit">
 </form>
