@@ -61,7 +61,7 @@ def add_user_succeed():
 def login_fail(error_info=''):
 	t = loader.get_template('login.html')
 	return HttpResponse(t.render(Context({'error':error_info})))
-def login_succeed(name):
+def login_succeed(user):
 	t = loader.get_template('login_succeed.html')
 	response =  HttpResponse(t.render(Context()))
 	key_v = 'fireman'
@@ -70,30 +70,34 @@ def login_succeed(name):
 	expires_v = datetime.now()+timedelta(0,60*60,0)
 	value_v = {'id':id_v,'domain':domain_v}
 	try:								# table usercookie is almost not change ,only change cookie id
-		ck = UserCookie.objects.filter(cookie_user_name =name)
+		ck = UserCookie.objects.all()#filter(cookie_user_id =id)
 		if len(ck)>1:
 			for k in ck[1:]:
 				k.delete()
+			ck = ck[0]
+		if len(ck)==1:
 			ck = ck[0]
 		if not ck:
 			ck=UserCookie()
 		ck.cookie_id = id_v
 		ck.cookie_time = expires_v
 		ck.cookie_domain = domain_v
-		ck.cookie_user_name = name
-		ck.save()
+		ck.cookie_user_name = user.user_name
+		ck.cookie_user = user
+		ck.save() 
+
 	except Exception as e:
+		raise e
 		return login_fail('save cookie error')
-	#response.cookies={'id':value_v,'expires':expires_v,'domain':domain_v}
 	response.set_cookie(key=key_v,value=id_v)#,max_age=60*60,domain=domain_v)
 	return response
 def check_user(name,password):
 	if not name or not password:
 		return login_fail(error_info='please enter you name and password!')
-	name_res = UserDefine.objects.filter(user_name=str(name))
-	if len(name_res)!=1:
+	user_res = UserDefine.objects.filter(user_name=str(name))
+	if len(user_res)!=1:
 		return login_fail('you account is not exist!')
-	if name_res[0].user_password == password:
-		return login_succeed(name)
+	if user_res[0].user_password == password:
+		return login_succeed(user_res[0])
 	else:
 		return login_fail(error_info='you password is not correct!')

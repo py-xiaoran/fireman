@@ -11,7 +11,8 @@ class UserDefine(models.Model):
 		return u"id:%(id),name%(name),passwd%(password),email%(email)"%dit
 
 class UserImg(models.Model):
-	user_id = models.IntegerField()
+#	user_id = models.IntegerField()
+	user = models.ForeignKey(UserDefine)
 	user_img = models.TextField(max_length=100)
 	user_loveleve = models.IntegerField()
 	def __unicode__(self):
@@ -23,5 +24,6 @@ class UserCookie(models.Model):
 	cookie_time = models.TimeField()
 	cookie_domain = models.CharField(max_length=50)
 	cookie_user_name = models.CharField(max_length=30)
+	cookie_user  = models.ForeignKey(UserDefine)
 
 	

@@ -63,7 +63,7 @@ MEDIA_URL = ''
 # Example: "/var/www/example.com/static/"
 import os
 STATIC_ROOT = os.path.normpath(os.path.abspath(__file__)+'/../../static/')
-
+APP_HOME_ROOT = os.path.normpath(os.path.abspath(__file__)+'/../../home/static/')
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
@@ -73,7 +73,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    
+    ('homeImg',os.path.join(APP_HOME_ROOT,'homeImg')),  
 )
 
 # List of finder classes that know how to find static files in
@@ -162,3 +162,4 @@ LOGGING = {
         },
     }
 }
+

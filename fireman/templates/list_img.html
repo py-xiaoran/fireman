@@ -1,4 +1,12 @@
 {%extends "base.html"%}
 {%block context%}
-<li>image show here</li>
+<li>image show here:</li>
+<p>{{error}}</p>
+{%if img_list%}
+{%for li in img_list%}
+<p>{{li.img_name}}</p>
+<img src={{li.img_local}}></img>
+{%endfor%}
+{%endif%}
+<a href='/'>return</a>
 {%endblock%}
