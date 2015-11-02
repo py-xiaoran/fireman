@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-
+from views import user_option
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -13,8 +13,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^$',include('home.urls')),
-    url(r'^auth/',include('auth.urls')),
-    url(r'^getImg/',include('getImg.urls')),
-    url(r'^users/',include('users.urls')),
+    url(r'^home/$',user_option),
 )

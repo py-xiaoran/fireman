@@ -26,6 +26,9 @@ def search_img(search_info):
     img_level_list = algor_search_img(search_info,obj_list,'img_name')
     return img_level_list
 
+def show_static_img(request):
+    pass
+
 def load_img(img_level_list):
     error=''
     if not img_level_list:

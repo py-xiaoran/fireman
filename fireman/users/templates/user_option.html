@@ -1,0 +1,20 @@
+{% extends "base.html"%}
+{%block context%}
+<script>
+</script>
+<div>
+<form  method="POST" enctype="multipart/form-data">
+{%csrf_token%}
+{{uf.as_p}}
+<input type="submit" value="submit">
+<p>{{error}}</p>
+{%if local%}
+<img src={{local}}></img>
+{%endif%}
+</form>
+<br>
+{%for img in user_img%}
+<img src={{img.user_img}}></img>
+{%endfor%}
+</div>
+{%endblock%}

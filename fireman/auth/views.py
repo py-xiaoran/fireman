@@ -5,6 +5,7 @@ from django.template import Context
 from django.template import RequestContext
 from django.http import HttpResponse
 from models import UserDefine
+from models import UserImg
 import uuid
 from datetime import datetime
 from datetime import timedelta
@@ -101,3 +102,20 @@ def check_user(name,password):
 		return login_succeed(user_res[0])
 	else:
 		return login_fail(error_info='you password is not correct!')
+
+
+def get_user_name(cookie):
+	if 'fireman' in cookie:
+		id = cookie['fireman']
+                c = UserCookie.objects.get(cookie_id=id)
+                return c.cookie_user_name
+	return ''
+
+def get_user_img(cookie):
+	if 'fireman' in cookie:
+		id = cookie['fireman']
+		c = UserCookie.objects.get(cookie_id=id)
+		user = c.cookie_user
+		img_list = UserImg.objects.filter(user=user)
+		return img_list
+	return []
